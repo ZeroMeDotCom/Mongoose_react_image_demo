@@ -1,0 +1,21 @@
+version: "3.8"
+services:
+  backend:
+    build:
+      context: ./backend   # The build context for the backend service
+      dockerfile: Dockerfile
+    volumes:
+      - ./backend:/app     # Mount the local 'backend' folder to '/app' inside the container
+    ports:
+      - "5001:5001"
+    depends_on:
+      - mongo
+
+  frontend:
+    build:
+      context: ./frontend  # The build context for the frontend service
+      dockerfile: Dockerfile
+    volumes:
+      - ./frontend:/App.js    # Mount the local 'frontend' folder to '/app' inside the container
+    ports:
+      - "3000:80"
